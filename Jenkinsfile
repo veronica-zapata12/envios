@@ -30,7 +30,7 @@ pipeline {
           branches: [[name: '*/master']],
           doGenerateSubmoduleConfigurations: false,
           extensions: [],
-          gitTool: 'default',
+          gitTool: 'Git_Centos',
           submoduleCfg: [],
           userRemoteConfigs: [[
             credentialsId: 'GitHub_veronica-zapata12',
