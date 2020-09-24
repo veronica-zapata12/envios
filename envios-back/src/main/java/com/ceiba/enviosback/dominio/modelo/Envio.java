@@ -12,16 +12,19 @@ public class Envio {
     private String receptorDireccion;
     private double peso;
     private int valor;
+    private boolean envioExpress;
 
 
-    public Envio(Long idEnvio, String remitente, String receptor, String receptorDireccion, double peso) {
+    public Envio(Long idEnvio, String remitente, String receptor, String receptorDireccion, double peso, boolean envioExpress) {
         fechaIngreso = new Date();
         this.idEnvio = idEnvio;
         this.remitente = remitente;
         this.receptor = receptor;
         this.receptorDireccion = receptorDireccion;
         this.peso = peso;
+        this.envioExpress = envioExpress;
         fechaEntrega = this.calcularFechaEntrega(fechaIngreso);
+
 
     }
 
@@ -58,6 +61,10 @@ public class Envio {
         return peso;
     }
 
+    public boolean isEnvioExpress() {
+        return envioExpress;
+    }
+
     public int getValor() {
         // estos pesos son en kilogramos
         double pesoLiviano = 10.0;
@@ -85,9 +92,19 @@ public class Envio {
 
     public Date calcularFechaEntrega(Date fecha) {
         int diasParaEntrega = 3;
+        int diaAdicional = 1;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fecha);
-        calendar.add(Calendar.DAY_OF_YEAR, diasParaEntrega);
+        if (envioExpress) {
+            calendar.add(Calendar.DAY_OF_YEAR, diaAdicional);
+        } else {
+            calendar.add(Calendar.DAY_OF_YEAR, diasParaEntrega);
+        }
+        int diaDomingo = calendar.get(Calendar.DAY_OF_WEEK);
+        if (diaDomingo == Calendar.SUNDAY) {
+            calendar.add(Calendar.DAY_OF_YEAR, diaAdicional);
+
+        }
 
         return calendar.getTime();
     }

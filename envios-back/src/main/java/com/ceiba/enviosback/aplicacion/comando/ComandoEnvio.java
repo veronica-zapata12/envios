@@ -13,14 +13,16 @@ public class ComandoEnvio {
     private String receptorDireccion;
     private double peso;
     private int valor;
+    private boolean envioExpress;
 
-    public ComandoEnvio(Long idEnvio, String remitente, String receptor, String receptorDireccion, double peso) {
+    public ComandoEnvio(Long idEnvio, String remitente, String receptor, String receptorDireccion, double peso, boolean envioExpress) {
         this.idEnvio = idEnvio;
         fechaIngreso = new Date();
         this.remitente = remitente;
         this.receptor = receptor;
         this.receptorDireccion = receptorDireccion;
         this.peso = peso;
+        this.envioExpress=envioExpress;
     }
 
     public Long getIdEnvio() {
@@ -34,6 +36,10 @@ public class ComandoEnvio {
     public Date getFechaEntrega() {
         return fechaEntrega;
     }*/
+
+    public boolean isEnvioExpress() {
+        return envioExpress;
+    }
 
     public String getRemitente() {
         return remitente;

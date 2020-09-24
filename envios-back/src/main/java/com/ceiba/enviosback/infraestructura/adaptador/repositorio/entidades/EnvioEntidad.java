@@ -1,8 +1,5 @@
 package com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -33,4 +30,7 @@ public class EnvioEntidad {
     private double peso;
     @Column
     private  int valor;
+
+    @Column
+    private  boolean envioExpress;
 }
