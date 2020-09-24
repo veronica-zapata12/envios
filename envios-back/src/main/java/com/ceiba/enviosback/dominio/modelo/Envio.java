@@ -1,8 +1,10 @@
 package com.ceiba.enviosback.dominio.modelo;
 
+import lombok.Getter;
+
 import java.util.Calendar;
 import java.util.Date;
-
+@Getter
 public class Envio {
     private Long idEnvio;
     private Date fechaIngreso;
@@ -28,9 +30,6 @@ public class Envio {
 
     }
 
-    public Long getIdEnvio() {
-        return idEnvio;
-    }
 
 
     public Date getFechaIngreso() {
@@ -66,28 +65,11 @@ public class Envio {
     }
 
     public int getValor() {
-        // estos pesos son en kilogramos
-        double pesoLiviano = 10.0;
-        double pesoMedio = 20.0;
-        double pesoPesado = 40.0;
-
-        if (peso < pesoLiviano) {
-            valor = 15000;
-        } else if (peso > pesoLiviano && peso < pesoMedio) {
-            valor = 25000;
-        } else if (peso > pesoMedio && peso < pesoPesado) {
-            valor = 35000;
-        } else {
-            valor = 50000;
-        }
-        return setValor(valor);
-
-
+        return valor;
     }
 
-    public int setValor(int valor) {
+    public void setValor(int valor) {
         this.valor = valor;
-        return valor;
     }
 
     public Date calcularFechaEntrega(Date fecha) {
