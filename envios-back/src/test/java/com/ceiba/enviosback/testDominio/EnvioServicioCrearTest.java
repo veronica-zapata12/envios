@@ -30,4 +30,16 @@ public class EnvioServicioCrearTest {
         }
 
     }
+    @Test
+    void crearEnvioConExpress(){
+        Envio envio=new EnvioDataBuilder().conEnvioExpress(true).build();
+        try {
+            servicioCrearEnvio.ejecutar(envio);
+
+        }catch (Exception e){
+            Assertions.fail("error en la creacion del producto");
+
+        }
+
+    }
 }

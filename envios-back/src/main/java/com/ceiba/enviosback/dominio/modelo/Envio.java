@@ -29,33 +29,7 @@ public class Envio {
 
 
     }
-
-
-
-    public Date getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-
-    public Date getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-
-    public String getRemitente() {
-        return remitente;
-    }
-
-
-    public String getReceptor() {
-        return receptor;
-    }
-
-    public String getReceptorDireccion() {
-        return receptorDireccion;
-    }
-
-
+    
     public double getPeso() {
         return peso;
     }
@@ -64,9 +38,7 @@ public class Envio {
         return envioExpress;
     }
 
-    public int getValor() {
-        return valor;
-    }
+
 
     public void setValor(int valor) {
         this.valor = valor;
