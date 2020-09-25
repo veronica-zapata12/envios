@@ -9,7 +9,7 @@ public class EnvioDataBuilder {
     private static final String REMITENTE = "camilo";
     private static final String RECEPTOR = "andres";
     private static final String RECEPTORDIRECCION = "calle 38 # 23-56";
-    private static final Double PESO = 405.6;
+    private static final Double PESO = 45.6;
     private static final Boolean ENVIOEXPRESS = false;
     private Long idEnvio;
     private String remitente;

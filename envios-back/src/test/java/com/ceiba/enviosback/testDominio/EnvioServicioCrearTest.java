@@ -1,4 +1,5 @@
 package com.ceiba.enviosback.testDominio;
+
 import com.ceiba.enviosback.dominio.modelo.Envio;
 import com.ceiba.enviosback.dominio.puerto.dao.DaoPrecio;
 import com.ceiba.enviosback.dominio.puerto.repositorio.RepositorioEnvio;
@@ -7,36 +8,38 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 public class EnvioServicioCrearTest {
-    private  RepositorioEnvio repositorioEnvio;
-    private  DaoPrecio daoPrecio;
+    private RepositorioEnvio repositorioEnvio;
+    private DaoPrecio daoPrecio;
     private ServicioCrearEnvio servicioCrearEnvio;
 
     @BeforeEach
-    public void crear(){
-        daoPrecio=Mockito.mock(DaoPrecio.class);
-        repositorioEnvio=Mockito.mock(RepositorioEnvio.class);
-        servicioCrearEnvio=new ServicioCrearEnvio(repositorioEnvio,daoPrecio);
+    public void crear() {
+        daoPrecio = Mockito.mock(DaoPrecio.class);
+        repositorioEnvio = Mockito.mock(RepositorioEnvio.class);
+        servicioCrearEnvio = new ServicioCrearEnvio(repositorioEnvio, daoPrecio);
     }
+
     @Test
-    void crearEnvioSinExpress(){
-        Envio envio=new EnvioDataBuilder().build();
+    void crearEnvioSinExpress() {
+        Envio envio = new EnvioDataBuilder().build();
         try {
             servicioCrearEnvio.ejecutar(envio);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Assertions.fail("error en la creacion del producto");
 
         }
-
     }
+
     @Test
-    void crearEnvioConExpress(){
-        Envio envio=new EnvioDataBuilder().conEnvioExpress(true).build();
+    void crearEnvioConExpress() {
+        Envio envio = new EnvioDataBuilder().conEnvioExpress(true).build();
         try {
             servicioCrearEnvio.ejecutar(envio);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Assertions.fail("error en la creacion del producto");
 
         }
