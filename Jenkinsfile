@@ -1,14 +1,13 @@
-
 #!groovy
+
 pipeline {
   //Donde se va a ejecutar el Pipeline
   agent {
     label 'Slave_Induccion'
   }
-    triggers {
+  triggers {
     pollSCM('@hourly')
   }
- 
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
     //Mantener artefactos y salida de consola para el # específico de ejecuciones recientes del Pipeline.
@@ -40,27 +39,26 @@ pipeline {
         ])
       }
     }
- stage('Build') {
+    stage('Build') {
       steps {
         echo "------------>Build<------------"
-
+	
 	dir("envios-back"){
           //Construir sin tarea test que se ejecutó previamente
-
+	   
            sh 'gradle build -x test'
 	}
-   stage('Compile & Unit Tests') {
-              steps{
 
-                 echo "------------>Cleaning previous compilations<------------"
-		dir("envios-back"){ 
-                 sh 'gradle --b ./build.gradle clean'
-
-                 echo "------------>Unit Tests<------------"
-                 sh 'gradle --b ./build.gradle test jacocoTestReport'
-		}
-             }
-        }
+      }
+    }
+    stage('Tests') {
+      steps {
+        echo "------------>Unit Tests<------------"
+	dir("envios-back"){
+        sh 'gradle test'
+	}
+      }
+    }
     stage('Static Code Analysis') {
       steps {
         echo '------------>Análisis de código estático<------------'
