@@ -51,15 +51,12 @@ pipeline {
 
       }
     }
-    stage('Compile & Unit Tests') {
+    stage('Tests') {
       steps {
-       echo "------------>Cleaning previous compilations<------------"
-		dir("envios-back""){ 
-                 sh 'gradle --b ./build.gradle clean'
-
-                 echo "------------>Unit Tests<------------"
-                 sh 'gradle --b ./build.gradle test jacocoTestReport'
-		}
+        echo "------------>Unit Tests<------------"
+	dir("envios-back"){
+        sh 'gradle test'
+	}
       }
     }
     stage('Static Code Analysis') {
