@@ -6,7 +6,7 @@ plugins {
 	id "org.sonarqube" version "2.7"
 }
 
-group = 'com.ceiba'
+group = 'com.ceiba.enviosback'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -16,9 +16,8 @@ sonarqube{
 	}
 }
 configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
+	developmentOnly {
+		extendsFrom annotationProcessor
 	}
 }
 repositories {
@@ -42,11 +41,11 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
 test {
 		useJUnitPlatform()
-		dependsOn 'cleanTest'
 	}
 
 
@@ -61,3 +60,8 @@ sonarqube {
 			property "sonar.junit.reportPaths", "build/test-results/test"
 		}
 	}
+jacocoTestReport {
+	reports {
+		xml.enabled true
+	}
+}
