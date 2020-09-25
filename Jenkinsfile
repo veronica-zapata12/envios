@@ -1,9 +1,12 @@
 
-
+#!groovy
 pipeline {
   //Donde se va a ejecutar el Pipeline
   agent {
     label 'Slave_Induccion'
+  }
+    triggers {
+    pollSCM('@hourly')
   }
  
   //Opciones específicas de Pipeline dentro del Pipeline
@@ -37,7 +40,15 @@ pipeline {
         ])
       }
     }
+ stage('Build') {
+      steps {
+        echo "------------>Build<------------"
 
+	dir("envios-back"){
+          //Construir sin tarea test que se ejecutó previamente
+
+           sh 'gradle build -x test'
+	}
    stage('Compile & Unit Tests') {
               steps{
 
@@ -60,18 +71,6 @@ pipeline {
       }
     }
   }
-      stage('Build') {
-      steps {
-        echo "------------>Build<------------"
-	
-	dir("envios-back"){
-          //Construir sin tarea test que se ejecutó previamente
-	   
-            sh 'gradle --b ./build.gradle build -x test'
-	}
-
-      }
-    }
   post {
     always {
       echo 'This will always run'
