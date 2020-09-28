@@ -29,7 +29,20 @@ public class Envio {
 
 
     }
-    
+
+
+    public String getRemitente() {
+        return remitente;
+    }
+
+    public String getReceptor() {
+        return receptor;
+    }
+
+    public String getReceptorDireccion() {
+        return receptorDireccion;
+    }
+
     public double getPeso() {
         return peso;
     }

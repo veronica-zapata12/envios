@@ -24,8 +24,14 @@ public class EnvioServicioCrearTest {
     @Test
     void crearEnvioSinExpress() {
         Envio envio = new EnvioDataBuilder().build();
+
         try {
             servicioCrearEnvio.ejecutar(envio);
+            Assertions.assertEquals(envio.getRemitente(),"camilo");
+            Assertions.assertEquals(envio.getReceptor(),"andres");
+            Assertions.assertEquals(envio.getReceptorDireccion(),"calle 38 # 23-56");
+            Assertions.assertEquals(envio.getPeso(),45.6);
+            Assertions.assertEquals(envio.isEnvioExpress(),false);
 
         } catch (Exception e) {
             Assertions.fail("error en la creacion del producto");

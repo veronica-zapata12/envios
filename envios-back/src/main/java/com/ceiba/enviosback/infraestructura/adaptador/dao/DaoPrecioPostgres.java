@@ -1,6 +1,8 @@
 package com.ceiba.enviosback.infraestructura.adaptador.dao;
 
+import com.ceiba.enviosback.dominio.modelo.Envio;
 import com.ceiba.enviosback.dominio.puerto.dao.DaoPrecio;
+import com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades.EnvioEntidad;
 import com.ceiba.enviosback.infraestructura.repositoriojpa.RepositorioPrecioJpa;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,7 @@ public class DaoPrecioPostgres implements DaoPrecio {
     public DaoPrecioPostgres(RepositorioPrecioJpa repositorioPrecioJpa) {
         this.repositorioPrecioJpa = repositorioPrecioJpa;
     }
+
 
     @Override
     public int consultarPrecio(double peso) {

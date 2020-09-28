@@ -1,9 +1,6 @@
 package com.ceiba.enviosback.aplicacion.comando;
 
 
-import java.util.Date;
-
-
 public class ComandoEnvio {
     private Long idEnvio;
     private String remitente;

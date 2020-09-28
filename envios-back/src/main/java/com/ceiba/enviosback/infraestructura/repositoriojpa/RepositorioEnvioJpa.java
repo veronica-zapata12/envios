@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Repository
 public interface RepositorioEnvioJpa extends JpaRepository<EnvioEntidad, Serializable> {
-    /*
+
     @Query("select e from EnvioEntidad e where p.id =: id")
     EnvioEntidad buscarPorId(@PathVariable("id") Long id);
-*/}
+}
