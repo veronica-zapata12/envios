@@ -1,8 +1,6 @@
 package com.ceiba.enviosback.testInfraestructura;
 import com.ceiba.enviosback.EnviosBackApplication;
 import com.ceiba.enviosback.aplicacion.comando.ComandoEnvio;
-import com.ceiba.enviosback.dominio.puerto.dao.DaoPrecio;
-import com.ceiba.enviosback.dominio.puerto.repositorio.RepositorioEnvio;
 import com.ceiba.enviosback.infraestructura.adaptador.dao.DaoPrecioPostgres;
 import com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades.PrecioEntidad;
 import com.ceiba.enviosback.infraestructura.repositoriojpa.RepositorioEnvioJpa;
@@ -42,13 +40,13 @@ public class ControladorEnvioTest {
     private RepositorioEnvioJpa repositorioEnvioJpa;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
     }
 
 
     @Test
-    public void guardarEnvioTestd() throws Exception {
+    public void guardarEnvioTest() throws Exception {
         PrecioEntidad precioEntidad =new PrecioEntidad(1l,40.1,80.0,50000);
         repositorioPrecioJpa.save(precioEntidad);
         ComandoEnvio comandoEnvio = new ComandoEnvioDatabuilder().build();
