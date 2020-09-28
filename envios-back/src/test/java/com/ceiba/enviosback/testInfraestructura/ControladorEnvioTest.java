@@ -1,7 +1,8 @@
 package com.ceiba.enviosback.testInfraestructura;
+
 import com.ceiba.enviosback.EnviosBackApplication;
 import com.ceiba.enviosback.aplicacion.comando.ComandoEnvio;
-import com.ceiba.enviosback.dominio.modelo.Envio;
+;
 import com.ceiba.enviosback.infraestructura.adaptador.dao.DaoPrecioPostgres;
 import com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades.PrecioEntidad;
 import com.ceiba.enviosback.infraestructura.repositoriojpa.RepositorioEnvioJpa;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -52,10 +54,10 @@ public class ControladorEnvioTest {
 
     @Test
     public void guardarEnvioTest() throws Exception {
-        PrecioEntidad precioEntidad =new PrecioEntidad(1l,40.1,80.0,50000);
+        PrecioEntidad precioEntidad = new PrecioEntidad(1l, 40.1, 80.0, 50000);
         repositorioPrecioJpa.save(precioEntidad);
         ComandoEnvio comandoEnvio = new ComandoEnvioDatabuilder().build();
-        DaoPrecioPostgres daoPrecioPostgres = new DaoPrecioPostgres(repositorioPrecioJpa) ;
+        DaoPrecioPostgres daoPrecioPostgres = new DaoPrecioPostgres(repositorioPrecioJpa);
         daoPrecioPostgres.consultarPrecio(comandoEnvio.getPeso());
         mockMvc.perform(post("/envios").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEnvio)))
@@ -64,16 +66,17 @@ public class ControladorEnvioTest {
     }
 
     @Test
-    public void ConsultarEnvioPorId()throws Exception{
+    public void ConsultarEnvioPorId() throws Exception {
 
-        mockMvc.perform(get("/envios/{id}",1)
+        mockMvc.perform(get("/envios/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.remitente", is("camilo")))
                 .andDo(print());
     }
+
     @Test
-    public void ConsultarEnvioTodos()throws Exception{
+    public void ConsultarEnvioTodos() throws Exception {
 
         mockMvc.perform(get("/envios")
                 .contentType(MediaType.APPLICATION_JSON))

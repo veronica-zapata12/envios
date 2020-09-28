@@ -18,15 +18,15 @@ public class ComandoEnvioDatabuilder {
     private boolean envioExpress;
 
     public ComandoEnvioDatabuilder() {
-        this.idEnvio=ID;
-        this.remitente=REMITENTE;
-        this.receptor=RECEPTOR;
-        this.receptorDireccion=RECEPTORDIRECCION;
-        this.peso=PESO;
-        this.envioExpress=ENVIOEXPRESS;
+        this.idEnvio = ID;
+        this.remitente = REMITENTE;
+        this.receptor = RECEPTOR;
+        this.receptorDireccion = RECEPTORDIRECCION;
+        this.peso = PESO;
+        this.envioExpress = ENVIOEXPRESS;
     }
-    
-    public ComandoEnvio build(){
-        return new ComandoEnvio(this.idEnvio,this.remitente,this.receptor,this.receptorDireccion,this.peso, this.envioExpress);
+
+    public ComandoEnvio build() {
+        return new ComandoEnvio(this.idEnvio, this.remitente, this.receptor, this.receptorDireccion, this.peso, this.envioExpress);
     }
 }

@@ -2,8 +2,6 @@ package com.ceiba.enviosback.testDominio;
 
 import com.ceiba.enviosback.dominio.modelo.Envio;
 
-import java.util.Date;
-
 public class EnvioDataBuilder {
     private static final Long ID = 1L;
     private static final String REMITENTE = "camilo";
@@ -19,18 +17,20 @@ public class EnvioDataBuilder {
     private boolean envioExpress;
 
     public EnvioDataBuilder() {
-        this.idEnvio=ID;
-        this.remitente=REMITENTE;
-        this.receptor=RECEPTOR;
-        this.receptorDireccion=RECEPTORDIRECCION;
-        this.peso=PESO;
-        this.envioExpress=ENVIOEXPRESS;
+        this.idEnvio = ID;
+        this.remitente = REMITENTE;
+        this.receptor = RECEPTOR;
+        this.receptorDireccion = RECEPTORDIRECCION;
+        this.peso = PESO;
+        this.envioExpress = ENVIOEXPRESS;
     }
-    public EnvioDataBuilder conEnvioExpress(boolean envioExpress){
+
+    public EnvioDataBuilder conEnvioExpress(boolean envioExpress) {
         this.envioExpress = envioExpress;
         return this;
     }
-    public Envio build(){
-        return new Envio(this.idEnvio,this.remitente,this.receptor,this.receptorDireccion,this.peso, this.envioExpress);
+
+    public Envio build() {
+        return new Envio(this.idEnvio, this.remitente, this.receptor, this.receptorDireccion, this.peso, this.envioExpress);
     }
 }
