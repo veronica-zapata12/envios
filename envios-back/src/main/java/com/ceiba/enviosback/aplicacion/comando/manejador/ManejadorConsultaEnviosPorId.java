@@ -4,7 +4,6 @@ import com.ceiba.enviosback.dominio.modelo.dto.EnviosDto;
 import com.ceiba.enviosback.dominio.puerto.dao.DaoEnvio;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @Component
 public class ManejadorConsultaEnviosPorId {

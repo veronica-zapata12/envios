@@ -20,6 +20,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.hamcrest.Matchers.is;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = EnviosBackApplication.class)
 @SpringBootTest
@@ -55,6 +58,15 @@ public class ControladorEnvioTest {
         mockMvc.perform(post("/envios").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEnvio)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void ConsultarEnvioPorId()throws Exception{
+
+        mockMvc.perform(get("/envios/{id}",1)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.remitente", is("camilo")));
     }
 
 }
