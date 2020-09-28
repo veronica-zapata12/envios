@@ -25,6 +25,7 @@ public class ComandoEnvioDatabuilder {
         this.peso=PESO;
         this.envioExpress=ENVIOEXPRESS;
     }
+    
     public ComandoEnvio build(){
         return new ComandoEnvio(this.idEnvio,this.remitente,this.receptor,this.receptorDireccion,this.peso, this.envioExpress);
     }

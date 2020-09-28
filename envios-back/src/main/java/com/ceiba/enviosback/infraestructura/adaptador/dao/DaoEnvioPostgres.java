@@ -7,6 +7,9 @@ import com.ceiba.enviosback.infraestructura.repositoriojpa.RepositorioEnvioJpa;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class DaoEnvioPostgres implements DaoEnvio {
     private ModelMapper modelMapper = new ModelMapper();
@@ -19,8 +22,17 @@ public class DaoEnvioPostgres implements DaoEnvio {
     @Override
     public EnviosDto bucarPorId(Long id) {
         EnvioEntidad envioEntidad= repositorioEnvioJpa.buscarPorId(id);
-
-
         return modelMapper.map(envioEntidad,EnviosDto.class);
+    }
+
+    @Override
+    public List<EnviosDto> mostrarTodos() {
+       List<EnvioEntidad> envioEntidadLista=repositorioEnvioJpa.findAll();
+       List<EnviosDto> enviosDtoLista=new ArrayList<>();
+       for (EnvioEntidad  envioEntidad: envioEntidadLista){
+           EnviosDto enviosDto=modelMapper.map(envioEntidad, EnviosDto.class);
+           enviosDtoLista.add(enviosDto);
+       }
+        return enviosDtoLista;
     }
 }

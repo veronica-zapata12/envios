@@ -1,6 +1,7 @@
 package com.ceiba.enviosback.testInfraestructura;
 import com.ceiba.enviosback.EnviosBackApplication;
 import com.ceiba.enviosback.aplicacion.comando.ComandoEnvio;
+import com.ceiba.enviosback.dominio.modelo.Envio;
 import com.ceiba.enviosback.infraestructura.adaptador.dao.DaoPrecioPostgres;
 import com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades.PrecioEntidad;
 import com.ceiba.enviosback.infraestructura.repositoriojpa.RepositorioEnvioJpa;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.hamcrest.Matchers.is;
@@ -57,7 +59,8 @@ public class ControladorEnvioTest {
         daoPrecioPostgres.consultarPrecio(comandoEnvio.getPeso());
         mockMvc.perform(post("/envios").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEnvio)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 
     @Test
@@ -66,7 +69,18 @@ public class ControladorEnvioTest {
         mockMvc.perform(get("/envios/{id}",1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.remitente", is("camilo")));
+                .andExpect(jsonPath("$.remitente", is("camilo")))
+                .andDo(print());
+    }
+    @Test
+    public void ConsultarEnvioTodos()throws Exception{
+
+        mockMvc.perform(get("/envios")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].remitente", is("camilo")))
+                .andExpect(jsonPath("$[0].receptor", is("andres")))
+                .andDo(print());
     }
 
 }
