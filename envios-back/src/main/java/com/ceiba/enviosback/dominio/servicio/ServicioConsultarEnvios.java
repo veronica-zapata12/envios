@@ -6,7 +6,7 @@ import com.ceiba.enviosback.dominio.puerto.dao.DaoEnvio;
 import java.util.List;
 
 public class ServicioConsultarEnvios {
-    private DaoEnvio daoEnvio;
+    private final DaoEnvio daoEnvio;
 
     public ServicioConsultarEnvios(DaoEnvio daoEnvio) {
         this.daoEnvio = daoEnvio;
