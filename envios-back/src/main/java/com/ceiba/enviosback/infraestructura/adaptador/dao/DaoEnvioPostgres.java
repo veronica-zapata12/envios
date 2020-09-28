@@ -19,8 +19,8 @@ public class DaoEnvioPostgres implements DaoEnvio {
     @Override
     public EnviosDto bucarPorId(Long id) {
         EnvioEntidad envioEntidad= repositorioEnvioJpa.buscarPorId(id);
-        EnviosDto enviosDto=modelMapper.map(envioEntidad,EnviosDto.class);
 
-        return enviosDto;
+
+        return modelMapper.map(envioEntidad,EnviosDto.class);
     }
 }
