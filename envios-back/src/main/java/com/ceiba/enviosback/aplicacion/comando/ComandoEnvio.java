@@ -22,13 +22,6 @@ public class ComandoEnvio {
         return idEnvio;
     }
 
-    /*public Date getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public Date getFechaEntrega() {
-        return fechaEntrega;
-    }*/
 
     public boolean isEnvioExpress() {
         return envioExpress;
@@ -49,12 +42,5 @@ public class ComandoEnvio {
     public double getPeso() {
         return peso;
     }
-/*
-    public int getValor() {
-        return valor;
-    }
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }*/
 }
