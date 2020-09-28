@@ -39,55 +39,55 @@ pipeline {
         ])
       }
     }
-    stage('Build') {
-      steps {
-        echo "------------>Build<------------"
-	
-	dir("envios-back"){
-          //Construir sin tarea test que se ejecutó previamente
-	   
-           sh 'gradle build -x test'
-	}
+    stage('Compile & Unit Tests') {
+              steps{
 
-      }
-    }
-    stage('Tests') {
-      steps {
-        echo "------------>Unit Tests<------------"
-	dir("envios-back"){
-        sh 'gradle test'
-	}
-      }
-    }
-    stage('Static Code Analysis') {
-      steps {
-        echo '------------>Análisis de código estático<------------'
-        withSonarQubeEnv('Sonar') {
-          sh "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-          // sh 'gradle sonarqube'
+                 echo "------------>Cleaning previous compilations<------------"
+		dir("envios-back"){ 
+                 sh 'gradle --b ./build.gradle clean'
+
+                 echo "------------>Unit Tests<------------"
+                 sh 'gradle --b ./build.gradle test jacocoTestReport'
+		}
+             }
         }
-      }
-    }
+        stage('Static Code Analysis') {
+      		steps {
+        	echo '------------>Análisis de código estático<------------'
+        	withSonarQubeEnv('Sonar') {
+          	sh "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+          	// sh 'gradle sonarqube'
+        	}
+      	   }
+    	}
+        stage('Build') {
+              steps {
+                    echo "------------>Build<------------"
+		dir("envios-back"){ 
+                    //Construir sin tarea test que se ejecutó previamente
+                    sh 'gradle --b ./build.gradle build -x test'
+		}
+              }
+        }
   }
+
   post {
-    always {
-      echo 'This will always run'
-    }
-    success {
-      echo 'This will run only if successful'
-      //junit 'envios-back/**/build/test-results/test/*.xml'
-    }
-    failure {
-      echo 'This will run only if failed'
-      mail (to: 'veronica.zapata@ceiba.com.co', subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
-            body: "Something is wrong with ${env.BUILD_URL}")
-    }
-    unstable {
-      echo 'This will run only if the run was marked as unstable'
-    }
-    changed {
-      echo 'This will run only if the state of the Pipeline has changed'
-      echo 'For example, if the Pipeline was previously failing but is now successful'
-    }
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
   }
 }
