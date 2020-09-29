@@ -15,7 +15,7 @@ public class ComandoEnvio {
         this.receptor = receptor;
         this.receptorDireccion = receptorDireccion;
         this.peso = peso;
-        this.envioExpress=envioExpress;
+        this.envioExpress = envioExpress;
     }
 
     public Long getIdEnvio() {

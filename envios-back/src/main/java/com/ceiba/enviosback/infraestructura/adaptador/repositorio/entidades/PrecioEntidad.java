@@ -1,8 +1,7 @@
 package com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -20,11 +19,11 @@ public class PrecioEntidad {
     @Id
     private Long id;
     @Column
-    private  double pesoMinimo;
+    private double pesoMinimo;
     @Column
-    private  double pesoMaximo;
+    private double pesoMaximo;
     @Column
-    private  int precio;
+    private int precio;
 
     public PrecioEntidad(Long id, double pesoMinimo, double pesoMaximo, int precio) {
         this.id = id;

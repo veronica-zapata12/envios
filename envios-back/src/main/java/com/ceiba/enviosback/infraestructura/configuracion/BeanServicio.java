@@ -14,8 +14,9 @@ public class BeanServicio {
     public ServicioCrearEnvio servicioCrearEnvio(RepositorioEnvio repositorioEnvio, DaoPrecio daoPrecio) {
         return new ServicioCrearEnvio(repositorioEnvio, daoPrecio);
     }
+
     @Bean
-    public ServicioConsultarEnvios servicioConsultarEnvios(DaoEnvio daoEnvio){
+    public ServicioConsultarEnvios servicioConsultarEnvios(DaoEnvio daoEnvio) {
         return new ServicioConsultarEnvios(daoEnvio);
     }
 }

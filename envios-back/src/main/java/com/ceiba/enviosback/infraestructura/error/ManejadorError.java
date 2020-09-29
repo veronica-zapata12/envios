@@ -1,4 +1,5 @@
 package com.ceiba.enviosback.infraestructura.error;
+
 import com.ceiba.enviosback.dominio.excepcion.ExcepcionCampoObligatorio;
 import com.ceiba.enviosback.dominio.excepcion.ExcepcionPesoObligatorio;
 import org.slf4j.Logger;

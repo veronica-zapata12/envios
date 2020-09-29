@@ -15,8 +15,9 @@ public class ManejadorCrearEnvio {
         this.servicioCrearEnvio = servicioCrearEnvio;
         this.fabricaEnvio = fabricaEnvio;
     }
-    public  void  ejecutar(ComandoEnvio comandoEnvio){
-        Envio envio= this.fabricaEnvio.crear(comandoEnvio);
+
+    public void ejecutar(ComandoEnvio comandoEnvio) {
+        Envio envio = this.fabricaEnvio.crear(comandoEnvio);
         this.servicioCrearEnvio.ejecutar(envio);
     }
 }

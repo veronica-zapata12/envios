@@ -1,4 +1,5 @@
 package com.ceiba.enviosback.infraestructura.adaptador.repositorio.entidades;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,8 +30,8 @@ public class EnvioEntidad {
     @Column
     private double peso;
     @Column
-    private  int valor;
+    private int valor;
 
     @Column
-    private  boolean envioExpress;
+    private boolean envioExpress;
 }

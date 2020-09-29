@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.util.Calendar;
 import java.util.Date;
+
 @Getter
 public class Envio {
     private static final String EL_REMITENTE_ES_OBLIGATORIO = "el remitente es obligatorio";
@@ -24,10 +25,10 @@ public class Envio {
 
 
     public Envio(Long idEnvio, String remitente, String receptor, String receptorDireccion, double peso, boolean envioExpress) {
-        ValidadorDeArgumento.validarObligatorio(remitente,EL_REMITENTE_ES_OBLIGATORIO);
-        ValidadorDeArgumento.validarObligatorio(receptor,EL_RECEPTOR_ES_OBLIGATORIO);
-        ValidadorDeArgumento.validarObligatorio(receptorDireccion,LA_DIRECCION_RECEPTOR_ES_OBLIGATORIO);
-        ValidadorDeArgumento.validarPesoObligatorio(peso,EL_PESO_ES_OBLIGATORIO);
+        ValidadorDeArgumento.validarObligatorio(remitente, EL_REMITENTE_ES_OBLIGATORIO);
+        ValidadorDeArgumento.validarObligatorio(receptor, EL_RECEPTOR_ES_OBLIGATORIO);
+        ValidadorDeArgumento.validarObligatorio(receptorDireccion, LA_DIRECCION_RECEPTOR_ES_OBLIGATORIO);
+        ValidadorDeArgumento.validarPesoObligatorio(peso, EL_PESO_ES_OBLIGATORIO);
         fechaIngreso = new Date();
         this.idEnvio = idEnvio;
         this.remitente = remitente;
@@ -62,12 +63,11 @@ public class Envio {
     }
 
 
-
     public void setValor(int valor) {
         this.valor = valor;
     }
 
-    public Date calcularFechaEntrega(Date fecha) {
+    private Date calcularFechaEntrega(Date fecha) {
         int diasParaEntrega = 3;
         int diaAdicional = 1;
         Calendar calendar = Calendar.getInstance();

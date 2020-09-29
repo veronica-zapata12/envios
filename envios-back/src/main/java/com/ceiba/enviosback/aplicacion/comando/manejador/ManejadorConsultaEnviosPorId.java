@@ -8,14 +8,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ManejadorConsultaEnviosPorId {
-    private final ServicioConsultarEnvios servicioConsultarEnvios;;
+    private final ServicioConsultarEnvios servicioConsultarEnvios;
+    ;
 
-    public ManejadorConsultaEnviosPorId( ServicioConsultarEnvios servicioConsultarEnvios) {
+    public ManejadorConsultaEnviosPorId(ServicioConsultarEnvios servicioConsultarEnvios) {
         this.servicioConsultarEnvios = servicioConsultarEnvios;
 
     }
 
-    public EnviosDto bucarEnvioId(Long id){
+    public EnviosDto bucarEnvioId(Long id) {
         return this.servicioConsultarEnvios.buscarPorId(id);
     }
 

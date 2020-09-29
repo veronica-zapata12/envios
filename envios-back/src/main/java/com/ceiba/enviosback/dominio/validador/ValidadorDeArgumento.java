@@ -4,8 +4,9 @@ import com.ceiba.enviosback.dominio.excepcion.ExcepcionCampoObligatorio;
 import com.ceiba.enviosback.dominio.excepcion.ExcepcionPesoObligatorio;
 
 public final class ValidadorDeArgumento {
-    private ValidadorDeArgumento(){
+    private ValidadorDeArgumento() {
     }
+
     public static void validarObligatorio(String valor, String mensaje) {
         if (valor == null) {
             {
@@ -13,6 +14,7 @@ public final class ValidadorDeArgumento {
             }
         }
     }
+
     public static void validarPesoObligatorio(Double valor, String mensaje) {
         if (valor <= 0) {
             {

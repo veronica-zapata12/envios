@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FabricaEnvio {
-    public Envio crear(ComandoEnvio comandoEnvio){
-        return new Envio(comandoEnvio.getIdEnvio(),comandoEnvio.getRemitente(),comandoEnvio.getReceptor(),comandoEnvio.getReceptorDireccion(),comandoEnvio.getPeso(), comandoEnvio.isEnvioExpress());
+    public Envio crear(ComandoEnvio comandoEnvio) {
+        return new Envio(comandoEnvio.getIdEnvio(), comandoEnvio.getRemitente(), comandoEnvio.getReceptor(), comandoEnvio.getReceptorDireccion(), comandoEnvio.getPeso(), comandoEnvio.isEnvioExpress());
     }
 }

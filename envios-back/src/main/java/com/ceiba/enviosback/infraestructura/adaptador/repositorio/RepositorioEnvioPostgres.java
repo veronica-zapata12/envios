@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class RepositorioEnvioPostgres implements RepositorioEnvio {
-private ModelMapper modelMapper= new ModelMapper();
-private final RepositorioEnvioJpa repositorioEnvioJpa;
+    private ModelMapper modelMapper = new ModelMapper();
+    private final RepositorioEnvioJpa repositorioEnvioJpa;
 
     public RepositorioEnvioPostgres(RepositorioEnvioJpa repositorioEnvioJpa) {
         this.repositorioEnvioJpa = repositorioEnvioJpa;
@@ -18,7 +18,7 @@ private final RepositorioEnvioJpa repositorioEnvioJpa;
 
     @Override
     public void crear(Envio envio) {
-        EnvioEntidad envioEntidad=modelMapper.map(envio,EnvioEntidad.class);
+        EnvioEntidad envioEntidad = modelMapper.map(envio, EnvioEntidad.class);
         this.repositorioEnvioJpa.save(envioEntidad);
 
     }
