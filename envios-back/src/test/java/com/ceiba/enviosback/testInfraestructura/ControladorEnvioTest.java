@@ -66,7 +66,7 @@ public class ControladorEnvioTest {
     }
 
     @Test
-    public void ConsultarEnvioPorId() throws Exception {
+    public void consultarEnvioPorId() throws Exception {
 
         mockMvc.perform(get("/envios/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +76,7 @@ public class ControladorEnvioTest {
     }
 
     @Test
-    public void ConsultarEnvioTodos() throws Exception {
+    public void consultarEnvioTodos() throws Exception {
 
         mockMvc.perform(get("/envios")
                 .contentType(MediaType.APPLICATION_JSON))

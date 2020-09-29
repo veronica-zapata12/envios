@@ -15,22 +15,23 @@ public class ServicioCrearEnvio {
     }
 
     public void ejecutar(Envio envio) {
-        envioExpress=envio.isEnvioExpress();
+        envioExpress = envio.isEnvioExpress();
         envio.setValor(precioEnvio(envio.getPeso()));
 
         this.repositorioEnvio.crear(envio);
     }
-    public int precioEnvio(double peso){
+
+    private int precioEnvio(double peso) {
 
         // variables para el costo adicional del envio 30% sobre el valor
         int porcentajeTotal = 100;
         int porcentajeDeAumento = 30;
 
-       int valor=daoPrecio.consultarPrecio(peso);
+        int valor = daoPrecio.consultarPrecio(peso);
 
         if (envioExpress) {
             int costoAdicional = (valor * porcentajeDeAumento) / porcentajeTotal;
-             valor = valor + costoAdicional;
+            valor = valor + costoAdicional;
 
         }
         return valor;

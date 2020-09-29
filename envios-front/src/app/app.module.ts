@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { EnviosModule } from './features/envios/envios.module';
 import { InicioComponent } from './features/inicio/inicio.component';
 
 @NgModule({
@@ -14,7 +16,7 @@ import { InicioComponent } from './features/inicio/inicio.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule, EnviosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

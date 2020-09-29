@@ -28,13 +28,15 @@ public class ControladorEnvio {
     public void crear(@RequestBody ComandoEnvio comandoEnvio) {
         this.manejadorCrearEnvio.ejecutar(comandoEnvio);
     }
-@GetMapping(value = "/{id}")
-    public EnviosDto consultarEnviosPorId(@PathVariable long id){
+
+    @GetMapping(value = "/{id}")
+    public EnviosDto consultarEnviosPorId(@PathVariable long id) {
         return this.manejadorConsultaEnviosPorId.bucarEnvioId(id);
-}
+    }
+
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<EnviosDto> consultarEnvios(){
+    public List<EnviosDto> consultarEnvios() {
         return this.manejadorConsultarEnvios.ejecutar();
     }
 
