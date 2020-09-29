@@ -1,5 +1,7 @@
 package com.ceiba.enviosback.testDominio;
 
+import com.ceiba.enviosback.dominio.excepcion.ExcepcionCampoObligatorio;
+import com.ceiba.enviosback.dominio.excepcion.ExcepcionPesoObligatorio;
 import com.ceiba.enviosback.dominio.modelo.Envio;
 import com.ceiba.enviosback.dominio.puerto.dao.DaoPrecio;
 import com.ceiba.enviosback.dominio.puerto.repositorio.RepositorioEnvio;
@@ -51,4 +53,33 @@ public class EnvioServicioCrearTest {
         }
 
     }
+    @Test
+    public void crearEnviosinReceptor() {
+
+
+        try {
+            Envio envio = new EnvioDataBuilder().sinReceptor(null).build();
+            servicioCrearEnvio.ejecutar(envio);
+
+        } catch (ExcepcionCampoObligatorio e) {
+
+            Assertions.assertEquals("el receptor es obligatorio",e.getMessage());
+
+        }
+
+    }
+    @Test
+
+    public void crearEnviosinPeso() {
+        try {
+            Envio envio = new EnvioDataBuilder().sinPeso(0.0).build();
+            servicioCrearEnvio.ejecutar(envio);
+
+        } catch (ExcepcionPesoObligatorio e) {
+
+            Assertions.assertEquals("el peso es obligatorio", e.getMessage());
+
+        }
+    }
+
 }

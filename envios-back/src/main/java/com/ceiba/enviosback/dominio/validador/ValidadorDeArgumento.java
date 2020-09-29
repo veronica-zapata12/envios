@@ -1,6 +1,7 @@
 package com.ceiba.enviosback.dominio.validador;
 
 import com.ceiba.enviosback.dominio.excepcion.ExcepcionCampoObligatorio;
+import com.ceiba.enviosback.dominio.excepcion.ExcepcionPesoObligatorio;
 
 public final class ValidadorDeArgumento {
     private ValidadorDeArgumento(){
@@ -15,7 +16,7 @@ public final class ValidadorDeArgumento {
     public static void validarPesoObligatorio(Double valor, String mensaje) {
         if (valor <= 0) {
             {
-                throw new ExcepcionCampoObligatorio(mensaje);
+                throw new ExcepcionPesoObligatorio(mensaje);
             }
         }
     }

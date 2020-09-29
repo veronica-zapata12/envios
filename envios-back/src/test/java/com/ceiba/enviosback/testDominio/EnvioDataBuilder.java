@@ -29,6 +29,15 @@ public class EnvioDataBuilder {
         this.envioExpress = envioExpress;
         return this;
     }
+    public EnvioDataBuilder sinReceptor(String receptor) {
+        this.receptor = receptor;
+        return this;
+    }
+    public EnvioDataBuilder sinPeso(double peso) {
+        this.peso = peso;
+        return this;
+    }
+
 
     public Envio build() {
         return new Envio(this.idEnvio, this.remitente, this.receptor, this.receptorDireccion, this.peso, this.envioExpress);
