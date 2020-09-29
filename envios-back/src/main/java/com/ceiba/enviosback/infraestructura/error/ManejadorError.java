@@ -1,5 +1,6 @@
 package com.ceiba.enviosback.infraestructura.error;
 import com.ceiba.enviosback.dominio.excepcion.ExcepcionCampoObligatorio;
+import com.ceiba.enviosback.dominio.excepcion.ExcepcionPesoObligatorio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
     public ManejadorError() {
 
         CODIGOS_ESTADO.put(ExcepcionCampoObligatorio.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(ExcepcionPesoObligatorio.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 
     }
 
