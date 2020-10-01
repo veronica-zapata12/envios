@@ -1,0 +1,65 @@
+
+<section >
+    <div class="container" >
+        <h1 style="text-align: center;">Lista de envios</h1>
+        <p> <strong> aca podrás ver todos los envios que se han realizado</strong></p>
+        <div class="row">
+            
+              <label>Id de referencia:</label>
+            
+            <div class="col-sm-4">
+              <input #id type="number" id="idEnvio" name="idEnvio" class="form-control" >
+            </div>
+           <button type="submit"  class="btn btn-primary" (click)="listarPorId(id.value)"
+        ><strong>Continuar</strong> </button>
+    </div>
+    <br>
+        <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha ingreso</th>
+                <th>Fecha entrega</th>
+                <th>Remitente</th>
+                <th>Receptor</th>
+                <th>Receptor direccion</th>
+                <th>Peso</th>
+                <th>Valor</th>
+                <th>Express</th>
+
+
+            </tr>
+        </thead>
+        <tbody *ngIf= "buscarid">
+            <tr  >
+                <td>{{buscarid.idEnvio}}</td>
+                <td>{{buscarid.fechaIngreso}}</td>
+                <td>{{buscarid.fechaEntrega}}</td>
+                <td>{{buscarid.remitente}}</td>
+                <td>{{buscarid.receptor}}</td>
+                <td>{{buscarid.receptorDireccion}}</td>
+                <td>{{buscarid.peso}}</td>
+                <td>{{buscarid.valor}}</td>
+                <td>{{buscarid.envioExpress}}</td>
+                
+            </tr>
+        </tbody>
+        <tbody *ngIf= "!buscarid">
+
+            <tr *ngFor="let lista of listaEnvio" >
+                <td>{{lista.idEnvio}}</td>
+                <td>{{lista.fechaIngreso}}</td>
+                <td>{{lista.fechaEntrega}}</td>
+                <td>{{lista.remitente}}</td>
+                <td>{{lista.receptor}}</td>
+                <td>{{lista.receptorDireccion}}</td>
+                <td>{{lista.peso}}</td>
+                <td>{{lista.valor}}</td>
+                <td>{{lista.envioExpress}}</td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+</section>
