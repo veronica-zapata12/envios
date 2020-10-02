@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { Envio } from '../../shared/modelo/envio';
 import { EnvioService } from '../../shared/servicio/envio.service';
 
@@ -9,7 +9,7 @@ import { EnvioService } from '../../shared/servicio/envio.service';
 })
 export class ListarEnviosComponent implements OnInit {
   public listaEnvio: Envio[];
-  public buscarid:Envio
+  public buscarid:Envio;
   constructor(protected envioService: EnvioService) { }
   
 
@@ -28,7 +28,11 @@ listarPorId(id:number){
   
   this.envioService.consultarPorId(id).subscribe(data => {
     this.buscarid = data
-    console.log(this.buscarid);    
+    console.log(this.buscarid);   
+    
   });
+   setTimeout( () => { this.buscarid =null }, 5000);
+  
+  
 }
 }

@@ -6,6 +6,13 @@ export class AppPage {
   }
 
   getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+    return element(by.css('app-root h1')).getText() as Promise<string>;
+  }
+  navigateTo1(): Promise<unknown> {
+    return browser.get('http://localhost:4200/envio/crear') as Promise<unknown>;
+  }
+
+  getTitleText1(): Promise<string> {
+    return element(by.css('app-root h1')).getText() as Promise<string>;
   }
 }

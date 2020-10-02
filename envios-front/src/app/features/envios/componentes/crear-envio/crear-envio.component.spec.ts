@@ -10,7 +10,7 @@ import { EnvioService } from '../../shared/servicio/envio.service';
 
 import { CrearEnvioComponent } from './crear-envio.component';
 
-fdescribe('CrearEnvioComponent', () => {
+describe('CrearEnvioComponent', () => {
   let component: CrearEnvioComponent;
   let fixture: ComponentFixture<CrearEnvioComponent>;
   let envioService:EnvioService;
@@ -51,10 +51,11 @@ fdescribe('CrearEnvioComponent', () => {
     component.envioForm.controls.receptor.setValue('pedro');
     component.envioForm.controls.receptorDireccion.setValue('calle 90 # 26-35');
     component.envioForm.controls.peso.setValue(50);
-    component.envioForm.controls.envioExpress.setValue(true);
+    component.envioForm.controls.envioExpress.setValue(false);
     expect(component.envioForm.valid).toBeTruthy();
 
+    expect({remitente:'juan', receptor:'pedro',receptorDireccion:'calle 90 # 26-35',peso:50,envioExpress:false}).toEqual(component.envioForm.value);
+  
     component.crear();
-    //expect({remitente:'juan', receptor:'pedro',receptorDireccion:'calle 90 # 26-35',peso:50,envioExpress:true}).toEqual(component.envioForm.value);
   });
 });
