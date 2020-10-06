@@ -61,8 +61,8 @@ public class ControladorEnvioTest {
         daoPrecioPostgres.consultarPrecio(comandoEnvio.getPeso());
         mockMvc.perform(post("/envios").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEnvio)))
-                .andExpect(status().isOk())
-                .andDo(print());
+                .andExpect(status().isOk());
+
     }
 
     @Test

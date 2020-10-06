@@ -32,6 +32,6 @@ public class EnvioConsultarTodosTest {
 
         Mockito.when(daoEnvio.mostrarTodos()).thenReturn(enviosDtoLista);
         List<EnviosDto> enviosDto1 = servicioConsultarEnvios.mostrarTodos();
-        Assertions.assertFalse(enviosDto1 == null);
+        Assertions.assertNotNull(enviosDto1);
     }
 }

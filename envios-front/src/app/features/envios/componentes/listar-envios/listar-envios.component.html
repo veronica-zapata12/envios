@@ -1,23 +1,30 @@
 
 <section >
     <div class="container" >
-        <h1 style="text-align: center;">Lista de envios</h1>
-        <p> <strong> aca podrás ver todos los envios que se han realizado</strong></p>
+        <h1 style="text-align: center;">Lista De Envíos</h1>
+        <br>
         <div class="row">
+            <label > <strong> Número Total De Envios es: {{listaEnvio.length}}</strong></label>
+          </div>
+        <div [formGroup]="idForm" class="row">
             
               <label>Id de referencia:</label>
             
             <div class="col-sm-4">
-              <input #id type="number" id="idEnvio" name="idEnvio" class="form-control" onSubmit=listarPorId(id.value) >
+              <input #id type="number" id="idEnvio" name="idEnvio" class="form-control" formControlName="idEnvio">
             </div>
-           <button type="submit"  class="btn btn-primary" (click)="listarPorId(id.value)"
-        ><strong>Continuar</strong> </button>
+           <button type="submit" id="buscar" class="btn btn-primary" (click)="listarPorId(id.value)"
+        ><strong>Buscar</strong> </button>
+        
     </div>
+    
+    
     <br>
+   <div>
         <table class="table table-striped table-bordered">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>Id</th>
+                <th>Id de referencia</th>
                 <th>Fecha ingreso</th>
                 <th>Fecha entrega</th>
                 <th>Remitente</th>
@@ -46,7 +53,7 @@
         </tbody>
         <tbody *ngIf= "!buscarid">
 
-            <tr *ngFor="let lista of listaEnvio" >
+            <tr *ngFor="let lista of listaEnvio | paginate:{itemsPerPage:20, currentPage:paginaActual};" >
                 <td>{{lista.idEnvio}}</td>
                 <td>{{lista.fechaIngreso}}</td>
                 <td>{{lista.fechaEntrega}}</td>
@@ -61,5 +68,9 @@
             
         </tbody>
     </table>
+</div>
+<div class="control" *ngIf= "!buscarid">
+    <pagination-controls  (pageChange)="paginaActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+     </div>
 </div>
 </section>

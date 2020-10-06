@@ -7,15 +7,15 @@ import { of } from 'rxjs';
 import { HttpService } from 'src/app/core/service/http.service';
 import { Envio } from '../../shared/modelo/envio';
 import { EnvioService } from '../../shared/servicio/envio.service';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ListarEnviosComponent } from './listar-envios.component';
 
-fdescribe('ListarEnviosComponent', () => {
+describe('ListarEnviosComponent', () => {
   let component: ListarEnviosComponent;
   let fixture: ComponentFixture<ListarEnviosComponent>;
   let envioService:EnvioService;
   const listaEnvios: Envio[] = [{envioExpress: true,fechaEntrega: "2020-09-25",fechaIngreso: "2020-09-24",idEnvio: 1,peso: 10.1, receptor: "andres", receptorDireccion: "calle 90 #56-38",remitente: "pedro", valor: 32500},{envioExpress: false,fechaEntrega: "2020-10-05",fechaIngreso: "2020-10-01",idEnvio: 2,peso: 60.5, receptor: "jaime", receptorDireccion: "calle 90 #56-38",remitente: "antonio", valor: 50000}];
-  const envioPorId: Envio = {envioExpress: true,fechaEntrega: "2020-09-25",fechaIngreso: "2020-09-24",idEnvio: 1,peso: 10.1, receptor: "andres", receptorDireccion: "calle 90 #56-38",remitente: "pedro", valor: 32500};
+  const buscarid: Envio = {envioExpress: true,fechaEntrega: "2020-09-25",fechaIngreso: "2020-09-24",idEnvio: 1,peso: 10.1, receptor: "andres", receptorDireccion: "calle 90 #56-38",remitente: "pedro", valor: 32500};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ fdescribe('ListarEnviosComponent', () => {
         HttpClientModule,
         RouterTestingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,NgxPaginationModule
       ],
       providers: [EnvioService, HttpService],
     })
@@ -40,8 +40,8 @@ fdescribe('ListarEnviosComponent', () => {
     spyOn(envioService, 'consultarTodos').and.returnValue(
       of(listaEnvios)
     );
-    spyOn(envioService, 'consultarPorId').and.returnValue(
-      of(envioPorId)
+    spyOn(envioService, 'consultarPorId').withArgs(1).and.returnValue(
+      of(buscarid)
     );
     fixture.detectChanges();
   });
@@ -51,5 +51,14 @@ fdescribe('ListarEnviosComponent', () => {
     expect(component).toBeTruthy();
     expect(2).toBe(listaEnvios.length);
 });
+it('debería listar uno', () => {
+   component.paginaActual=1;
+   component.idForm.controls.idEnvio.setValue(1);
+  expect(component.idForm.valid).toBeTruthy();
+  expect({idEnvio: 1}).toEqual(component.idForm.value);
+  component.listarPorId(1);
+ 
+});
+
 });
 

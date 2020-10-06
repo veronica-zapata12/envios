@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Envio } from 'src/app/features/envios/shared/modelo/envio';
 import { EnvioService } from '../../shared/servicio/envio.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 
+const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 2;
 @Component({
   selector: 'app-crear-envio',
   templateUrl: './crear-envio.component.html',
@@ -13,40 +13,39 @@ import { Router } from '@angular/router';
 export class CrearEnvioComponent implements OnInit {
   envioForm: FormGroup;
   public listaEnvio: Envio[];
-  public idReferencial:number;
-  constructor(protected envioService: EnvioService,private router: Router) { }
+  public idReferencial: number;
+  constructor(protected envioService: EnvioService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.construirFormularioProducto();
-    this.envioService.consultarTodos().subscribe(data => {
-      this.listaEnvio = data
-      this.idReferencial=this.listaEnvio.length
-      
-    });
-
-
-
+    this.consultarTodosEnvios();
   }
 
   crear() {
-    if(this.envioForm.valid){
-    this.envioService.guardar(this.envioForm.value).subscribe(respuesta => {
-      console.log(respuesta);
-      
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'El envío ha sido creado con éxito su Id de referencia es: '+ (this.idReferencial+1),
-        
-        showConfirmButton: true,
-        
-      }) ;
-      this.router.navigate(['/inicio']); 
-      
-      
+    if (this.envioForm.valid) {
+      this.envioService.guardar(this.envioForm.value).subscribe(() => {
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'El envío ha sido creado con éxito',
+          text: 'Su Id de referencia es: ' + (this.idReferencial + 1),
+          showConfirmButton: true,
+
+        });
+        this.consultarTodosEnvios();
+      });
+
+      this.construirFormularioProducto();
+    }
+  }
+  consultarTodosEnvios() {
+    this.envioService.consultarTodos().subscribe(data => {
+      this.listaEnvio = data
+      this.idReferencial = this.listaEnvio.length
 
     });
-  }
+
   }
 
   private construirFormularioProducto() {
@@ -54,7 +53,7 @@ export class CrearEnvioComponent implements OnInit {
       remitente: new FormControl('', [Validators.required]),
       receptor: new FormControl('', [Validators.required]),
       receptorDireccion: new FormControl('', [Validators.required]),
-      peso: new FormControl('', [Validators.required]),
+      peso: new FormControl('', [Validators.required, Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
       envioExpress: new FormControl(false, [Validators.required])
     });
   }

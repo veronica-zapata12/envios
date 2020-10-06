@@ -11,10 +11,12 @@ public class ServicioConsultarEnvios {
     public ServicioConsultarEnvios(DaoEnvio daoEnvio) {
         this.daoEnvio = daoEnvio;
     }
-    public EnviosDto buscarPorId(Long id){
+
+    public EnviosDto buscarPorId(Long id) {
         return this.daoEnvio.bucarPorId(id);
     }
-    public List<EnviosDto>mostrarTodos(){
+
+    public List<EnviosDto> mostrarTodos() {
         return this.daoEnvio.mostrarTodos();
     }
 }

@@ -7,7 +7,7 @@ export class EnvioPage {
     private inputReceptorDireccion = element(by.id('receptorDireccion'));
     private inputPeso = element(by.id('peso'));
     private inputEnvioExpress = element(by.id('envioExpress'));
-
+    private inputId = element(by.id('idEnvio'));
 
     async ingresarRemitente(remitente) {
         await this.inputRemitente.sendKeys(remitente);
@@ -32,5 +32,12 @@ export class EnvioPage {
     async botonTexto() {
         await element(by.buttonText('OK')).click();;
     }
+    async ingresarIdParaBuscar(id) {
+        await this.inputId.sendKeys(id);
+    }
+    async botonBuscar() {
+        await element(by.id('buscar')).click();
+    }
+
 
 }

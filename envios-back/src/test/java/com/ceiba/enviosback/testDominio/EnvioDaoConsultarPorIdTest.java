@@ -26,7 +26,7 @@ public class EnvioDaoConsultarPorIdTest {
         EnviosDto enviosDto = new EnviosDto(1L, new Date(), new Date(), "juan", "pedro", "calle 23#32-4", 25.5, 25000, false);
         Mockito.when(daoEnvio.bucarPorId(1L)).thenReturn(enviosDto);
         EnviosDto enviosDto1 = servicioConsultarEnvios.buscarPorId(1L);
-        Assertions.assertFalse(enviosDto1 == null);
+        Assertions.assertNotNull(enviosDto1);
     }
 
 }

@@ -1,4 +1,5 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Envio } from '../../shared/modelo/envio';
 import { EnvioService } from '../../shared/servicio/envio.service';
 
@@ -9,30 +10,34 @@ import { EnvioService } from '../../shared/servicio/envio.service';
 })
 export class ListarEnviosComponent implements OnInit {
   public listaEnvio: Envio[];
-  public buscarid:Envio;
+  public buscarid: Envio;
+  idForm: FormGroup;
+  paginaActual = 1;
   constructor(protected envioService: EnvioService) { }
-  
+
 
   ngOnInit(): void {
-   this.listaTodos();
+    this.listaTodos();
+    this.limpiar();
   }
-listaTodos(){
-  this.envioService.consultarTodos().subscribe(data => {
-    this.listaEnvio = data
-    console.log(this.listaEnvio);
-  });
-}
-listarPorId(id:number){
-  console.log("entra");
-  console.log(id);
-  
-  this.envioService.consultarPorId(id).subscribe(data => {
-    this.buscarid = data
-    console.log(this.buscarid);   
-    
-  });
-   setTimeout( () => { this.buscarid =null }, 5000);
-  
-  
-}
+  listaTodos() {
+    this.envioService.consultarTodos().subscribe(data => {
+      this.listaEnvio = data;
+
+    });
+  }
+
+  listarPorId(id: number) {
+
+    this.envioService.consultarPorId(id).subscribe(data => {
+      this.buscarid = data
+    });
+    setTimeout(() => { this.limpiar() }, 7000);
+  }
+  private limpiar() {
+    this.idForm = new FormGroup({
+      idEnvio: new FormControl('', [Validators.required]),
+    });
+    this.buscarid = null;
+  }
 }

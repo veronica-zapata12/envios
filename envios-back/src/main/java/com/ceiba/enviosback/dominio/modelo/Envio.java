@@ -1,12 +1,10 @@
 package com.ceiba.enviosback.dominio.modelo;
 
 import com.ceiba.enviosback.dominio.validador.ValidadorDeArgumento;
-import lombok.Getter;
 
 import java.util.Calendar;
 import java.util.Date;
 
-@Getter
 public class Envio {
     private static final String EL_REMITENTE_ES_OBLIGATORIO = "el remitente es obligatorio";
     private static final String EL_RECEPTOR_ES_OBLIGATORIO = "el receptor es obligatorio";

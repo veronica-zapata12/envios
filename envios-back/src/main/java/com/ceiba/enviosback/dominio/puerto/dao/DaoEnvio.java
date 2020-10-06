@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface DaoEnvio {
     EnviosDto bucarPorId(Long id);
-    List<EnviosDto>mostrarTodos();
+
+    List<EnviosDto> mostrarTodos();
 }
