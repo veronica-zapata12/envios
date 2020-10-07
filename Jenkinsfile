@@ -43,8 +43,8 @@ pipeline {
               steps{
 
                  echo "------------>Cleaning previous compilations<------------"
-					dir("envios-back"){ 
-						sh 'gradle --b ./build.gradle clean'
+				dir("envios-back"){ 
+                 sh 'gradle --b ./build.gradle clean'
 
                  echo "------------>Unit Tests<------------"
                  sh 'gradle --b ./build.gradle test jacocoTestReport'
@@ -63,7 +63,7 @@ pipeline {
         stage('Build') {
               steps {
                     echo "------------>Build<------------"
-					dir("envios-back"){ 
+		dir("envios-back"){ 
                     //Construir sin tarea test que se ejecutó previamente
                     sh 'gradle --b ./build.gradle build -x test'
 		}
