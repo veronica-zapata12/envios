@@ -34,6 +34,7 @@ export class ListarEnviosComponent implements OnInit {
     });
     setTimeout(() => { this.limpiar() }, 7000);
   }
+  
   private limpiar() {
     this.idForm = new FormGroup({
       idEnvio: new FormControl('', [Validators.required]),

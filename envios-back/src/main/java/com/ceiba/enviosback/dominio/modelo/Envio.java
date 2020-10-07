@@ -1,9 +1,12 @@
 package com.ceiba.enviosback.dominio.modelo;
 
 import com.ceiba.enviosback.dominio.validador.ValidadorDeArgumento;
+import lombok.Getter;
+
 
 import java.util.Calendar;
 import java.util.Date;
+@Getter
 
 public class Envio {
     private static final String EL_REMITENTE_ES_OBLIGATORIO = "el remitente es obligatorio";
@@ -20,7 +23,6 @@ public class Envio {
     private double peso;
     private int valor;
     private boolean envioExpress;
-
 
     public Envio(Long idEnvio, String remitente, String receptor, String receptorDireccion, double peso, boolean envioExpress) {
         ValidadorDeArgumento.validarObligatorio(remitente, EL_REMITENTE_ES_OBLIGATORIO);
@@ -60,6 +62,10 @@ public class Envio {
         return envioExpress;
     }
 
+
+    public int getValor() {
+        return valor;
+    }
 
     public void setValor(int valor) {
         this.valor = valor;

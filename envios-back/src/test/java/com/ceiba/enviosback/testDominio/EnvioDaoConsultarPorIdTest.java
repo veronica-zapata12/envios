@@ -27,6 +27,7 @@ public class EnvioDaoConsultarPorIdTest {
         Mockito.when(daoEnvio.bucarPorId(1L)).thenReturn(enviosDto);
         EnviosDto enviosDto1 = servicioConsultarEnvios.buscarPorId(1L);
         Assertions.assertNotNull(enviosDto1);
+
     }
 
 }

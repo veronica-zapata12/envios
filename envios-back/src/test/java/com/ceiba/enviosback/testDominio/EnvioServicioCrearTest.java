@@ -19,44 +19,39 @@ public class EnvioServicioCrearTest {
     @BeforeEach
     public void crear() {
         daoPrecio = Mockito.mock(DaoPrecio.class);
+
         repositorioEnvio = Mockito.mock(RepositorioEnvio.class);
+
         servicioCrearEnvio = new ServicioCrearEnvio(repositorioEnvio, daoPrecio);
     }
 
     @Test
     void crearEnvioSinExpress() {
+
         Envio envio = new EnvioDataBuilder().build();
+        Mockito.when(daoPrecio.consultarPrecio(envio.getPeso())).thenReturn(50000);
+        servicioCrearEnvio.ejecutar(envio);
+        Assertions.assertEquals(envio.getRemitente(), "camilo");
+        Assertions.assertEquals(envio.getReceptor(), "andres");
+        Assertions.assertEquals(envio.getReceptorDireccion(), "calle 38 # 23-56");
+        Assertions.assertEquals(envio.getPeso(), 45.6);
+        Assertions.assertEquals(envio.isEnvioExpress(), false);
+        Assertions.assertEquals(envio.getValor(), 50000);
 
-        try {
-            servicioCrearEnvio.ejecutar(envio);
-            Assertions.assertEquals(envio.getRemitente(), "camilo");
-            Assertions.assertEquals(envio.getReceptor(), "andres");
-            Assertions.assertEquals(envio.getReceptorDireccion(), "calle 38 # 23-56");
-            Assertions.assertEquals(envio.getPeso(), 45.6);
-            Assertions.assertEquals(envio.isEnvioExpress(), false);
-
-        } catch (Exception e) {
-            Assertions.fail("error en la creacion del envio");
-
-        }
     }
 
     @Test
     void crearEnvioConExpress() {
         Envio envio = new EnvioDataBuilder().conEnvioExpress(true).build();
-        try {
-            servicioCrearEnvio.ejecutar(envio);
-            Assertions.assertEquals(envio.getRemitente(), "camilo");
-            Assertions.assertEquals(envio.getReceptor(), "andres");
-            Assertions.assertEquals(envio.getReceptorDireccion(), "calle 38 # 23-56");
-            Assertions.assertEquals(envio.getPeso(), 45.6);
-            Assertions.assertEquals(envio.isEnvioExpress(), true);
+        Mockito.when(daoPrecio.consultarPrecio(envio.getPeso())).thenReturn(50000);
+        servicioCrearEnvio.ejecutar(envio);
+        Assertions.assertEquals(envio.getRemitente(), "camilo");
+        Assertions.assertEquals(envio.getReceptor(), "andres");
+        Assertions.assertEquals(envio.getReceptorDireccion(), "calle 38 # 23-56");
+        Assertions.assertEquals(envio.getPeso(), 45.6);
+        Assertions.assertEquals(envio.isEnvioExpress(), true);
+        Assertions.assertEquals(envio.getValor(), 65000);
 
-
-        } catch (Exception e) {
-            Assertions.fail("error en la creacion del envio");
-
-        }
 
     }
 
@@ -64,32 +59,19 @@ public class EnvioServicioCrearTest {
     public void crearEnviosinReceptor() {
 
 
-        try {
-            Envio envio = new EnvioDataBuilder().sinReceptor(null).build();
-            servicioCrearEnvio.ejecutar(envio);
-            Assertions.fail("se esperaba una excepcion de tipo ExcepcionCampoObligatorio ");
+        Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
+                new EnvioDataBuilder().sinReceptor(null).build(), "el receptor es obligatorio"
+        );
 
-        } catch (ExcepcionCampoObligatorio e) {
-
-            Assertions.assertEquals("el receptor es obligatorio", e.getMessage());
-
-        }
 
     }
 
     @Test
 
     public void crearEnviosinPeso() {
-        try {
-            Envio envio = new EnvioDataBuilder().sinPeso(0.0).build();
-            servicioCrearEnvio.ejecutar(envio);
-            Assertions.fail("se esperaba una excepcion de tipo ExcepcionPesoObligatorio ");
+        Assertions.assertThrows(ExcepcionPesoObligatorio.class, () ->
+                new EnvioDataBuilder().sinPeso(0.0).build(), "el peso es obligatorio");
 
-        } catch (ExcepcionPesoObligatorio e) {
-
-            Assertions.assertEquals("el peso es obligatorio", e.getMessage());
-
-        }
     }
 
 }

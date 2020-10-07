@@ -10,7 +10,7 @@ import { EnvioService } from '../../shared/servicio/envio.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListarEnviosComponent } from './listar-envios.component';
 
-describe('ListarEnviosComponent', () => {
+fdescribe('ListarEnviosComponent', () => {
   let component: ListarEnviosComponent;
   let fixture: ComponentFixture<ListarEnviosComponent>;
   let envioService:EnvioService;
@@ -40,7 +40,7 @@ describe('ListarEnviosComponent', () => {
     spyOn(envioService, 'consultarTodos').and.returnValue(
       of(listaEnvios)
     );
-    spyOn(envioService, 'consultarPorId').withArgs(1).and.returnValue(
+    spyOn(envioService, 'consultarPorId').and.returnValue(
       of(buscarid)
     );
     fixture.detectChanges();
@@ -52,7 +52,6 @@ describe('ListarEnviosComponent', () => {
     expect(2).toBe(listaEnvios.length);
 });
 it('debería listar uno', () => {
-   component.paginaActual=1;
    component.idForm.controls.idEnvio.setValue(1);
   expect(component.idForm.valid).toBeTruthy();
   expect({idEnvio: 1}).toEqual(component.idForm.value);
