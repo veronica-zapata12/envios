@@ -33,15 +33,13 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok:1.18.10'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testCompile 'junit:junit:4.12'
-	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testCompile 'junit:junit:4.12'
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
