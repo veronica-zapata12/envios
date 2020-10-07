@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 
 import java.util.Date;
 
-import static org.mockito.Mockito.mock;
 
 public class EnvioDaoConsultarPorIdTest {
     private DaoEnvio daoEnvio;

@@ -62,8 +62,6 @@ public class EnvioServicioCrearTest {
         Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
                 new EnvioDataBuilder().sinReceptor(null).build(), "el receptor es obligatorio"
         );
-
-
     }
 
     @Test
