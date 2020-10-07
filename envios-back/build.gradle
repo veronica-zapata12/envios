@@ -16,8 +16,9 @@ sonarqube{
 	}
 }
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
 	}
 }
 repositories {
@@ -46,6 +47,7 @@ dependencies {
 
 test {
 		useJUnitPlatform()
+		dependsOn 'cleanTest'
 	}
 
 

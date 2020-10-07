@@ -57,10 +57,20 @@ public class EnvioServicioCrearTest {
 
     @Test
     public void crearEnviosinReceptor() {
-
-
         Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
                 new EnvioDataBuilder().sinReceptor(null).build(), "el receptor es obligatorio"
+        );
+    }
+    @Test
+    public void crearEnviosinRemitente() {
+        Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
+                new EnvioDataBuilder().sinRemitente(null).build(), "el remitente es obligatorio"
+        );
+    }
+    @Test
+    public void crearEnviosinReceptorDireccion() {
+        Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
+                new EnvioDataBuilder().sinReceptorDireccion(null).build(), "la direccion del receptor es obligatorio"
         );
     }
 
