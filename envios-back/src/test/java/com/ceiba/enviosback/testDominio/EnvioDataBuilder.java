@@ -37,10 +37,7 @@ public class EnvioDataBuilder {
         this.remitente = remitente;
         return this;
     }
-    public EnvioDataBuilder sinReceptorDireccion(String receptorDireccion) {
-        this.receptorDireccion = receptorDireccion;
-        return this;
-    }
+
     public EnvioDataBuilder sinPeso(double peso) {
         this.peso = peso;
         return this;

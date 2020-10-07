@@ -13,6 +13,7 @@ export class ListarEnviosComponent implements OnInit {
   public buscarid: Envio;
   idForm: FormGroup;
   paginaActual = 1;
+  totalEnvios:number;
   constructor(protected envioService: EnvioService) { }
 
 
@@ -23,6 +24,7 @@ export class ListarEnviosComponent implements OnInit {
   listaTodos() {
     this.envioService.consultarTodos().subscribe(data => {
       this.listaEnvio = data;
+      this.totalEnvios=this.listaEnvio.length
 
     });
   }
@@ -32,7 +34,7 @@ export class ListarEnviosComponent implements OnInit {
     this.envioService.consultarPorId(id).subscribe(data => {
       this.buscarid = data
     });
-    setTimeout(() => { this.limpiar() }, 7000);
+    setTimeout(() => { this.limpiar() }, 10000);
   }
   
   private limpiar() {

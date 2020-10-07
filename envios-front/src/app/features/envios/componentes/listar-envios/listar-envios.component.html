@@ -4,7 +4,7 @@
         <h1 style="text-align: center;">Lista De Envíos</h1>
         <br>
         <div class="row">
-            <label > <strong> Número Total De Envios es: {{listaEnvio.length}}</strong></label>
+            <label > <strong> Número Total De Envios es: {{totalEnvios}}</strong></label>
           </div>
         <div [formGroup]="idForm" class="row">
             
@@ -37,7 +37,7 @@
 
             </tr>
         </thead>
-        <tbody *ngIf= "buscarid">
+        <tbody *ngIf= "buscarid ">
             <tr  >
                 <td>{{buscarid.idEnvio}}</td>
                 <td>{{buscarid.fechaIngreso}}</td>

@@ -3,8 +3,10 @@ package com.ceiba.enviosback.testDominio;
 import com.ceiba.enviosback.dominio.modelo.dto.EnviosDto;
 import com.ceiba.enviosback.dominio.puerto.dao.DaoEnvio;
 import com.ceiba.enviosback.dominio.servicio.ServicioConsultarEnvios;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -23,7 +25,7 @@ public class EnvioConsultarTodosTest {
     }
 
     @Test
-    void obtenerEnvioPorId() {
+   public void obtenerTodosEnvios() {
         List<EnviosDto>enviosDtoLista=new ArrayList<>();
         EnviosDto enviosDto = new EnviosDto(1L, new Date(), new Date(), "juan", "pedro", "calle 23#32-4", 25.5, 25000, false);
         enviosDtoLista.add(enviosDto);

@@ -6,7 +6,7 @@ plugins {
 	id "org.sonarqube" version "2.7"
 }
 
-group = 'com.ceiba'
+group = 'com.ceiba.enviosback'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -27,17 +27,18 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'jacoco'
 dependencies {
+	compile('org.modelmapper:modelmapper:1.1.0')
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile('org.modelmapper:modelmapper:1.1.0')
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok:1.18.10'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testCompile 'junit:junit:4.12'
 	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
 	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

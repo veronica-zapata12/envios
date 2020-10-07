@@ -8,10 +8,13 @@ import com.ceiba.enviosback.dominio.puerto.repositorio.RepositorioEnvio;
 import com.ceiba.enviosback.dominio.servicio.ServicioCrearEnvio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class EnvioServicioCrearTest {
+    private static final int VALOR_ESPERADO_CON_ENVIO_EXPRESS = 65000;
+    private static final int VALOR_ESPERADO_SIN_ENVIO_EXPRESS = 50000;
     private RepositorioEnvio repositorioEnvio;
     private DaoPrecio daoPrecio;
     private ServicioCrearEnvio servicioCrearEnvio;
@@ -26,31 +29,31 @@ public class EnvioServicioCrearTest {
     }
 
     @Test
-    void crearEnvioSinExpress() {
+    public void crearEnvioSinExpress() {
 
         Envio envio = new EnvioDataBuilder().build();
         Mockito.when(daoPrecio.consultarPrecio(envio.getPeso())).thenReturn(50000);
         servicioCrearEnvio.ejecutar(envio);
-        Assertions.assertEquals(envio.getRemitente(), "camilo");
-        Assertions.assertEquals(envio.getReceptor(), "andres");
-        Assertions.assertEquals(envio.getReceptorDireccion(), "calle 38 # 23-56");
-        Assertions.assertEquals(envio.getPeso(), 45.6);
-        Assertions.assertEquals(envio.isEnvioExpress(), false);
-        Assertions.assertEquals(envio.getValor(), 50000);
+        Assertions.assertEquals("camilo",envio.getRemitente() );
+        Assertions.assertEquals("andres",envio.getReceptor() );
+        Assertions.assertEquals("calle 38 # 23-56", envio.getReceptorDireccion());
+        Assertions.assertEquals( 45.6,envio.getPeso());
+        Assertions.assertEquals(false,envio.isEnvioExpress());
+        Assertions.assertEquals(VALOR_ESPERADO_SIN_ENVIO_EXPRESS, envio.getValor());;
 
     }
 
     @Test
-    void crearEnvioConExpress() {
+    public void crearEnvioConExpress() {
         Envio envio = new EnvioDataBuilder().conEnvioExpress(true).build();
         Mockito.when(daoPrecio.consultarPrecio(envio.getPeso())).thenReturn(50000);
         servicioCrearEnvio.ejecutar(envio);
-        Assertions.assertEquals(envio.getRemitente(), "camilo");
-        Assertions.assertEquals(envio.getReceptor(), "andres");
-        Assertions.assertEquals(envio.getReceptorDireccion(), "calle 38 # 23-56");
-        Assertions.assertEquals(envio.getPeso(), 45.6);
-        Assertions.assertEquals(envio.isEnvioExpress(), true);
-        Assertions.assertEquals(envio.getValor(), 65000);
+        Assertions.assertEquals("camilo",envio.getRemitente() );
+        Assertions.assertEquals("andres",envio.getReceptor() );
+        Assertions.assertEquals("calle 38 # 23-56", envio.getReceptorDireccion());
+        Assertions.assertEquals( 45.6,envio.getPeso());
+        Assertions.assertEquals(true,envio.isEnvioExpress());
+        Assertions.assertEquals(VALOR_ESPERADO_CON_ENVIO_EXPRESS, envio.getValor());
 
 
     }
@@ -65,12 +68,6 @@ public class EnvioServicioCrearTest {
     public void crearEnviosinRemitente() {
         Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
                 new EnvioDataBuilder().sinRemitente(null).build(), "el remitente es obligatorio"
-        );
-    }
-    @Test
-    public void crearEnviosinReceptorDireccion() {
-        Assertions.assertThrows(ExcepcionCampoObligatorio.class, () ->
-                new EnvioDataBuilder().sinReceptorDireccion(null).build(), "la direccion del receptor es obligatorio"
         );
     }
 

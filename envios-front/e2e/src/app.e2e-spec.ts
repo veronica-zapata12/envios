@@ -33,20 +33,20 @@ describe('workspace-project Envíos', () => {
     envio.ingresarReceptorDireccion(RECEPTOR_DIRECCION);
     envio.ingresarPeso(PESO);
     envio.ingresarEnvioExpress(ENVIO_EXPRESS);
-    browser.sleep( 2000);
+    envio.pausa();
     envio.botonContinuar();
-    browser.sleep( 2000);
+    envio.pausa();
     envio.botonTexto();
-    browser.sleep( 2000);
+    envio.pausa();
 });
 
 it('Deberia listar los envios y debe buscar un envio', () => {
   const IDPARABUSCAR=2;
   page.navigateTo();
   navbar.clickBotonListarEnvio();
-  browser.sleep(3000);
+  envio.pausa();
   envio.ingresarIdParaBuscar(IDPARABUSCAR);
   envio.botonBuscar();
-  browser.sleep(3000);
+  envio.pausa();
 });
 });

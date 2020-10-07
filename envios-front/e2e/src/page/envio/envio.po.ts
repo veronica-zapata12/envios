@@ -1,4 +1,4 @@
-import { by, element } from 'protractor';
+import { browser, by, element } from 'protractor';
 
 export class EnvioPage {
    
@@ -37,6 +37,10 @@ export class EnvioPage {
     }
     async botonBuscar() {
         await element(by.id('buscar')).click();
+    }
+
+     pausa(){
+        browser.sleep(2000);
     }
 
 
